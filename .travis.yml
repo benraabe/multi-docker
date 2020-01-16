@@ -22,3 +22,16 @@ after_success:
   - docker push benraa/multi-nginx
   - docker push benraa/multi-server
   - docker push benraa/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-central-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucketname: elasticbeanstalk-eu-central-1-484973702078
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
